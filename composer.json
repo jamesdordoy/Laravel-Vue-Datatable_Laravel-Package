@@ -1,0 +1,15 @@
+{
+    "name": "jamesdordoy/laravelpaypal",
+    "authors": [
+        {
+            "name": "Home",
+            "email": "jamesdordoy@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "jamesdordoy\\laravelvuedatatables\\": "src/"
+        }
+    }
+}
