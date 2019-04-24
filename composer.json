@@ -1,5 +1,5 @@
 {
-    "name": "jamesdordoy/laravelpaypal",
+    "name": "jamesdordoy/laravelvuedatatable",
     "authors": [
         {
             "name": "Home",
@@ -9,7 +9,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "jamesdordoy\\laravelvuedatatables\\": "src/"
+            "jamesdordoy\\laravelvuedatatable\\": "src/"
         }
     }
 }

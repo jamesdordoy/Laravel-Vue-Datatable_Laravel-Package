@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesDordoy\LaravelPayPal\Providers;
+namespace JamesDordoy\LaravelVueDatatable\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelPayPalServiceProvider extends ServiceProvider
+class LaravelVueDatatableServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.
