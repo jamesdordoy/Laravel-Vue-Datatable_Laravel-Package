@@ -5,9 +5,31 @@ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 
 ## Add Trait
-use App\Traits\DatatableTrait;
+```php
+<?php
 
-use DatatableTrait;
+namespace App;
+
+use App\Traits\DatatableTrait;
+use Illuminate\Database\Eloquent\Model;
+
+class Project extends Model
+{
+    use DatatableTrait;
+
+    protected $dataTableColumns = [
+        'id' => [
+            'search' => false,
+        ],
+        'name' => [
+            'search' => true,
+        ],
+        'link' => [
+            'search' => true,
+        ]
+    ];
+}
+```
 
 ## Use Controller Resource
 ```php
@@ -36,7 +58,6 @@ class ProjectController extends Controller
     }
 }
 ```
-
 
 ## app.js
 require('./packages/jamesdordoy/laravelvuedatatable/app.js');
