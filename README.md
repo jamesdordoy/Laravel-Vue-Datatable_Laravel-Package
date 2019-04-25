@@ -1,4 +1,4 @@
-##Publishing Assets
+## Publishing Assets
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider" --tag="vue-components"
 
 ## Add Config
