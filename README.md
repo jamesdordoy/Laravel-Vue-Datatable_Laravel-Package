@@ -1,25 +1,25 @@
 ##Publishing Assets
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider" --tag="vue-components"
 
-##Add Config
+## Add Config
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 
-##Add Trait
+## Add Trait
 use App\Traits\DatatableTrait;
 
 use DatatableTrait;
 
-##Use Controller Resource
+## Use Controller Resource
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 $data = Project::dataTableQuery($column, $dir, $length, $searchValue);
 
 return new DataTableCollectionResource($data);
 
-##app.js
+## app.js
 require('./packages/jamesdordoy/laravelvuedatatable/app.js');
 
-##Component
+## Component
 
 ```html
 
