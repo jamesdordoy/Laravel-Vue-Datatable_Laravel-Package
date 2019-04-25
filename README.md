@@ -10,11 +10,33 @@ use App\Traits\DatatableTrait;
 use DatatableTrait;
 
 ## Use Controller Resource
+```php
+<?php
+
+namespace App\Http\Controllers\Back;
+
+use App\Models\Project;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectRequest;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
-$data = Project::dataTableQuery($column, $dir, $length, $searchValue);
+class ProjectController extends Controller
+{
+    public function ajax(Request $request)
+    {   
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
 
-return new DataTableCollectionResource($data);
+        $data = Project::dataTableQuery($column, $dir, $length, $searchValue);
+
+        return new DataTableCollectionResource($data);
+    }
+}
+'''
+
 
 ## app.js
 require('./packages/jamesdordoy/laravelvuedatatable/app.js');
