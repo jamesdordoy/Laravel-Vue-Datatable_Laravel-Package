@@ -35,7 +35,7 @@ class ProjectController extends Controller
         return new DataTableCollectionResource($data);
     }
 }
-'''
+```
 
 
 ## app.js
