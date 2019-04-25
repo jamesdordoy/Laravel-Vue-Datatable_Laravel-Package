@@ -1,3 +1,6 @@
+## Example
+![Image description](https://www.jamesdordoy.co.uk/images/datatable.png)
+
 ## Publishing Assets
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider" --tag="vue-components"
 
@@ -93,3 +96,4 @@ require('./packages/jamesdordoy/laravelvuedatatable/app.js');
     }
 </script>
 ```
+
