@@ -1,5 +1,5 @@
 ## Example
-![Image description](https://www.jamesdordoy.co.uk/images/datatable.png)
+![Image description](https://www.jamesdordoy.co.uk/images/datatables.png)
 
 ## Publishing Assets
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider" --tag="vue-components"

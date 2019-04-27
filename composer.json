@@ -10,6 +10,9 @@
     "autoload": {
         "psr-4": {
             "jamesdordoy\\laravelvuedatatable\\": "src/"
-        }
+        },
+        "classmap": [
+            "src/"
+          ]
     }
 }
