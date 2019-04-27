@@ -1,5 +1,5 @@
 ## Example
-![Image description](https://www.jamesdordoy.co.uk/images/datatables.png)
+![Image description](https://www.jamesdordoy.co.uk/images/datatable.png)
 
 ## Package Installation
 composer require jamesdordoy/laravelvuedatatable
