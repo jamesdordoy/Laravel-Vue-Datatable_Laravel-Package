@@ -1,6 +1,9 @@
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/datatables.png)
 
+## Package Installation
+composer require jamesdordoy/laravelvuedatatable
+
 ## Publishing Assets
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider" --tag="vue-components"
 
