@@ -139,11 +139,11 @@ export default {
 
 ## API
 
-### Props
+### Datatable Props
 
 | Name | Type | Default | Description  
 | --- | --- | --- | --- |
-| `url ` | Object | "/" | The JSON url |
+| `url ` | String | "/" | The JSON url |
 | `columns` | Array | [ '10', '25', '50' ] | The table columns |
 | `per-page` | Array | [ '10', '25', '50' ] | Amount to be displayed |
 | `classes` | Object | See Below | Table classes |
@@ -152,18 +152,18 @@ export default {
 ### Default Classes
 ```json
 {
-    'table-container': {
-        'table-responsive': true,
+    "table-container": {
+        "table-responsive": true,
     },
-    'table': {
-        'table': true,
-        'table-striped': true,
-        'table-dark': true,
+    "table": {
+        "table": true,
+        "table-striped": true,
+        "table-dark": true,
     },
-    't-head': {
+    "t-head": {
 
     }
-    't-body': {
+    "t-body": {
         
     },
     td: {
@@ -175,7 +175,17 @@ export default {
 }
 ```
 
-### Overriding Filters &amp; Pagination:
+### Column Props
+| Name | Type | Default | Description  
+| --- | --- | --- | --- |
+| `label ` | String | "" | The JSON url |
+| `name` | String | "" | The table columns |
+| `filterable` | Boolean | false | Is Column filterable |
+| `component` | Component | null | a dynamic component that can be injected |
+| `classes` | Object | {} | Component classes to parse |
+
+
+## Overriding Filters &amp; Pagination:
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
 
 ```html
