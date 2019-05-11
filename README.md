@@ -239,49 +239,49 @@ import ExampleButton './ExampleButton.vue';
 
 export default {
 	data() {
-	    return {
-	        url: 'http://vue-datatable.test/ajax',
-	        perPage: ['10', '25', '50'],
-	        columns: [
-	            {
-	                label: 'ID',
-	                name: 'id',
-	                filterable: true,
-	            },
-	            {
-	                label: 'Name',
-	                name: 'name',
-	                filterable: true,
-	            },
-	            {
-                    label: 'Email',
-                    name: 'email',
-                    filterable: true,
-                }
-	            {
-	                label: '',
-	                name: 'View',
-	                filterable: false,
-	                component: ExampleButton,
-	                click: this.alertMe,
-	                classes: { 
-	                    'btn': true,
-	                    'btn-primary': true,
-	                    'btn-sm': true,
-	                } 
-	            },
-	        ]
-	    }
+		return {
+			url: 'http://vue-datatable.test/ajax',
+			perPage: ['10', '25', '50'],
+			columns: [
+				{
+					label: 'ID',
+					name: 'id',
+					filterable: true,
+				},
+				{
+					label: 'Name',
+					name: 'name',
+					filterable: true,
+				},
+				{
+					label: 'Email',
+					name: 'email',
+					filterable: true,
+				}
+				{
+					label: '',
+					name: 'View',
+					filterable: false,
+					component: ExampleButton,
+					click: this.alertMe,
+					classes: { 
+						'btn': true,
+						'btn-primary': true,
+						'btn-sm': true,
+					} 
+				},
+			]
+		}
 	},
 	components: {
-	    // eslint-disable-next-line
-	    ExampleButton,
+		// eslint-disable-next-line
+		ExampleButton,
 	},
 	methods: {
-        alertMe(data) {
-            alert("hey");
-        }
-    },
+		alertMe(data) {
+			alert("hey");
+		}
+	},
 }
 ```
 
@@ -293,15 +293,15 @@ If the included pagination or filters do not meet your requirements or if the st
 ```html
 <data-table
     :url="url"
-    :per-page="perPage"
-    :columns="columns">
+    :columns="columns"
+    :per-page="perPage">
 
     <span slot="pagination" slot-scope="{ links, meta }">
         <paginator 
-            @next="updateUrl"
-            @prev="updateUrl"
             :meta="meta"
-            :links="links">
+            :links="links"
+            @next="updateUrl"
+            @prev="updateUrl">
         </paginator>
     </span>
 </data-table>
@@ -315,14 +315,14 @@ This example filter will control the length of the table manipulating the tableD
 ```html
 <template>
 	<select
-	    v-model="tableData.length"
-	    class="form-control">
-	    <option
-	        :key="index"
-	        :value="records"
-	        v-for="(records, index) in perPage">
-	        {{ records }}
-	    </option>
+		class="form-control"
+		v-model="tableData.length">
+			<option
+				:key="index"
+				:value="records"
+				v-for="(records, index) in perPage">
+				{{ records }}
+			</option>
 	</select>
 </template>
 ```
@@ -340,13 +340,13 @@ export default {
 ```html
 <data-table
     :url="url"
-    :per-page="perPage"
-    :columns="columns">
+    :columns="columns"
+    :per-page="perPage">
 
     <span slot="filters" slot-scope="{ tableData, perPage }">
         <data-table-filters
-            :table-data="tableData"
-            :per-page="perPage">
+            :per-page="perPage"
+            :table-data="tableData">
         </data-table-filters>
     </span>
 </data-table>
