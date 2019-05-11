@@ -23,9 +23,6 @@ class LaravelVueDatatableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../resources/assets' =>
-            resource_path('js/packages/jamesdordoy/laravelvuedatatable'
-        )], 'vue-components');
+
     }
 }
