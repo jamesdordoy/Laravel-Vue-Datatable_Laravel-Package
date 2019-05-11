@@ -50,22 +50,24 @@ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
-class Project extends Model
+class User extends Authenticatable
 {
-    use DatatableTrait;
+    use Notifiable, LaravelVueDatatableTrait;
 
     protected $dataTableColumns = [
         'id' => [
-            'search' => false,
+            'searchable' => false,
         ],
         'name' => [
-            'search' => true,
+            'searchable' => true,
         ],
-        'link' => [
-            'search' => true,
+        'email' => [
+            'searchable' => true,
         ]
     ];
 }
@@ -77,22 +79,21 @@ class Project extends Model
 
 namespace App\Http\Controllers\Back;
 
-use App\Models\Project;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProjectRequest;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
-class ProjectController extends Controller
+class UserController extends Controller
 {
-    public function ajax(Request $request)
+    public function index(Request $request)
     {   
         $length = $request->input('length');
         $column = $request->input('column'); //Index
         $dir = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
 
-        $data = Project::dataTableQuery($column, $dir, $length, $searchValue);
+        $data = User::dataTableQuery($column, $dir, $length, $searchValue);
 
         return new DataTableCollectionResource($data);
     }
