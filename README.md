@@ -162,14 +162,14 @@ export default {
     },
     "t-head": {
 
-    }
+    },
     "t-body": {
         
     },
-    td: {
+    "td": {
 
     },
-    th: {
+    "th": {
         
     },
 }
