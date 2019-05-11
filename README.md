@@ -15,7 +15,7 @@ This package makes use of the Laravel Vue Pagination component https://github.co
 See 
 
 ## Example
-![Image description](https://www.jamesdordoy.co.uk/images/datatable.png)
+![Image description](https://www.jamesdordoy.co.uk/images/datatable.png?a=a)
 
 ## Package Installation
 composer require jamesdordoy/laravelvuedatatable
