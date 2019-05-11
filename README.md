@@ -316,13 +316,13 @@ This example filter will control the length of the table manipulating the tableD
 <template>
     <select
         class="form-control"
-		  v-model="tableData.length">
-		  <option
-		      :key="index"
-			   :value="records"
-			   v-for="(records, index) in perPage">
-			   {{ records }}
-		  </option>
+        v-model="tableData.length">
+        <option
+            :key="index"
+            :value="records"
+            v-for="(records, index) in perPage">
+            {{ records }}
+        </option>
     </select>
 </template>
 ```
