@@ -238,50 +238,50 @@ export default {
 import ExampleButton './ExampleButton.vue';
 
 export default {
-	data() {
-		return {
-			url: 'http://vue-datatable.test/ajax',
-			perPage: ['10', '25', '50'],
-			columns: [
-				{
-					label: 'ID',
-					name: 'id',
-					filterable: true,
-				},
-				{
-					label: 'Name',
-					name: 'name',
-					filterable: true,
-				},
-				{
-					label: 'Email',
-					name: 'email',
-					filterable: true,
-				}
-				{
-					label: '',
-					name: 'View',
-					filterable: false,
-					component: ExampleButton,
-					click: this.alertMe,
-					classes: { 
-						'btn': true,
-						'btn-primary': true,
-						'btn-sm': true,
-					} 
-				},
-			]
-		}
-	},
-	components: {
-		// eslint-disable-next-line
-		ExampleButton,
-	},
-	methods: {
-		alertMe(data) {
-			alert("hey");
-		}
-	},
+data() {
+    return {
+        url: 'http://vue-datatable.test/ajax',
+        perPage: ['10', '25', '50'],
+        columns: [
+        {
+            label: 'ID',
+            name: 'id',
+            filterable: true,
+        },
+        {
+            label: 'Name',
+             name: 'name',
+            filterable: true,
+        },
+        {
+            label: 'Email',
+            name: 'email',
+            filterable: true,
+        }
+        {
+            label: '',
+            name: 'View',
+            filterable: false,
+            component: ExampleButton,
+            click: this.alertMe,
+            classes: { 
+                'btn': true,
+                'btn-primary': true,
+                'btn-sm': true,
+            } 
+        },
+        ]
+    }
+},
+components: {
+    // eslint-disable-next-line
+    ExampleButton,
+},
+methods: {
+    alertMe(data) {
+        alert("hey");
+    }
+},
 }
 ```
 
@@ -314,16 +314,16 @@ This example filter will control the length of the table manipulating the tableD
 
 ```html
 <template>
-	<select
-		class="form-control"
-		v-model="tableData.length">
-			<option
-				:key="index"
-				:value="records"
-				v-for="(records, index) in perPage">
-				{{ records }}
-			</option>
-	</select>
+    <select
+        class="form-control"
+		  v-model="tableData.length">
+		  <option
+		      :key="index"
+			   :value="records"
+			   v-for="(records, index) in perPage">
+			   {{ records }}
+		  </option>
+    </select>
 </template>
 ```
 
