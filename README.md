@@ -23,6 +23,21 @@ composer require jamesdordoy/laravelvuedatatable
 ## Add Service Provider
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 
+## Publish the Config
+php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
+
+###Options
+
+```json
+{
+    "models": {
+        "search_term": "The term used in each model to declare if it is searchable by the datatable"
+    },
+    "default_order_by": "the default order by column on page loads"
+}
+```
+
+
 ## Use the Trait
 ```php
 <?php

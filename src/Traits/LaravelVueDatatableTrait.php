@@ -14,7 +14,7 @@ trait LaravelVueDatatableTrait
         if (isset(array_keys($columns)[$column])) {
             $query = $query->orderBy(array_keys($columns)[$column], $orderBy);
         } else {
-            $query = $query->orderBy('id', $orderBy);
+            $query = $query->orderBy(config('laravel-vue-datatables.default_order_by'), $orderBy);
         }
 
         if ($searchValue) {
@@ -24,12 +24,12 @@ trait LaravelVueDatatableTrait
 
                 foreach ($columns as $key => $column) {
                     if ($first) {
-                        if ($column['search']) {
+                        if ($column[config('laravel-vue-datatables.models.search_term')]) {
                             $query->where($key, 'like', '%' . $searchValue . '%');
                         }
                         $first = false;
                     } else {
-                        if ($column['search']) {
+                        if ($column[config('laravel-vue-datatables.models.search_term')]) {
                             $query->orWhere($key, 'like', '%' . $searchValue . '%');
                         }
                     }
