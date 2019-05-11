@@ -87,7 +87,7 @@ npm install laravel-vue-datatable
 Register the plugin:
 
 ```javascript
-import DataTable from '../../node_modules/laravel-vue-datatable/src/index.js';
+import DataTable from 'laravel-vue-datatable';
 Vue.use(DataTable);
 ```
 
