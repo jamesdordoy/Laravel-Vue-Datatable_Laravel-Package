@@ -223,9 +223,6 @@ export default {
 	    return {
 	        url: 'http://vue-datatable.test/ajax',
 	        perPage: ['10', '25', '50'],
-	        tableData: {
-	
-	        },
 	        columns: [
 	            {
 	                label: 'ID',
@@ -238,17 +235,16 @@ export default {
 	                filterable: true,
 	            },
 	            {
-	                label: 'Email',
-	                name: 'email',
-	                filterable: true,
-	                click: this.alertMe,
-	                component: DataTableAnchorCell
-	            },
+                    label: 'Email',
+                    name: 'email',
+                    filterable: true,
+                }
 	            {
 	                label: '',
 	                name: 'View',
 	                filterable: false,
-	                component: DataTableButtonCell,
+	                component: ExampleButton,
+	                click: this.alertMe,
 	                classes: { 
 	                    'btn': true,
 	                    'btn-primary': true,
@@ -263,7 +259,7 @@ export default {
 	    ExampleButton,
 	},
 	methods: {
-        alertMe() {
+        alertMe(data) {
             alert("hey");
         }
     },
