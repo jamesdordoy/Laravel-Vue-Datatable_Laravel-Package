@@ -163,10 +163,10 @@ export default {
 | Name | Type | Default | Description  
 | --- | --- | --- | --- |
 | `url ` | String | "/" | The JSON url |
-| `columns` | Array | [ '10', '25', '50' ] | The table columns |
-| `per-page` | Array | [ '10', '25', '50' ] | Amount to be displayed |
-| `classes` | Object | See Below | Table classes |
-| `pagination` | Object | {}  | (optional) props for gilbitron/laravel-vue-pagination |
+| `columns` | Array | [] | The table columns |
+| `per-page` | Array | [ '10', '25', '50' ] | (optional) Amount to be displayed |
+| `classes` | Object | See Below | (optional) Table classes |
+| `pagination` | Object | {}  | (optional) props for [gilbitron/laravel-vue-pagination](https://github.com/gilbitron/laravel-vue-pagination#props) |
 
 ### Default Classes
 ```json
