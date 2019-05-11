@@ -20,10 +20,10 @@ See
 ## Package Installation
 composer require jamesdordoy/laravelvuedatatable
 
-## Add Config
+## Add Service Provider
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 
-## Add Trait
+## Use the Trait
 ```php
 <?php
 
@@ -50,7 +50,7 @@ class Project extends Model
 }
 ```
 
-## Use Controller Resource
+## Use the Controller Resource
 ```php
 <?php
 
@@ -84,16 +84,14 @@ class ProjectController extends Controller
 npm install laravel-vue-datatable
 ```
 
-## Usage
-
-Register the plugin:
+## Register the Plugin
 
 ```javascript
 import DataTable from 'laravel-vue-datatable';
 Vue.use(DataTable);
 ```
 
-Use the component:
+## Basic Example 
 
 ```html
 <data-table
@@ -135,7 +133,6 @@ export default {
     },
 }
 ```
-
 
 ## API
 
@@ -266,8 +263,10 @@ export default {
 }
 ```
 
-## Overriding Filters &amp; Pagination:
+## Overriding the Filters &amp; Pagination Components:
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
+
+### DataTable
 
 ```html
 <data-table
@@ -287,6 +286,34 @@ If the included pagination or filters do not meet your requirements or if the st
 ```
 
 Once the URL has been updated by your customer paginator or filters, the table will re-render. Alterativly, if updating the URL is troublesome, different table filters can be manipulated by your filters using the v-model directive:
+
+### Example filter (DataTableFilter.vue)
+This example filter will control the length of the table manipulating the tableData.length property using v-model.
+
+```html
+<template>
+	<select
+	    v-model="tableData.length"
+	    class="form-control">
+	    <option
+	        :key="index"
+	        :value="records"
+	        v-for="(records, index) in perPage">
+	        {{ records }}
+	    </option>
+	</select>
+</template>
+```
+
+```javascript
+export default {
+    props: [
+        "tableData", "perPage"
+    ]
+}
+```
+
+### DataTable
 
 ```html
 <data-table
