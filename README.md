@@ -18,13 +18,19 @@ See
 ![Image description](https://www.jamesdordoy.co.uk/images/datatable.png?a=a)
 
 ## Package Installation
-composer require jamesdordoy/laravelvuedatatable
+```
+$ composer require jamesdordoy/laravelvuedatatable
+```
 
 ## Add Service Provider
+```
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
+```
 
 ## Publish the Config
+```
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
+```
 
 ###Options
 
