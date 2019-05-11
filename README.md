@@ -198,9 +198,10 @@ export default {
 | Name | Type | Default | Description  
 | --- | --- | --- | --- |
 | `label ` | String | "" | The JSON url |
-| `name` | String | "" | The table columns |
-| `filterable` | Boolean | false | Is Column filterable |
-| `component` | Component | null | a dynamic component that can be injected |
+| `name` | String | "" | The table column header name |
+| `width` | Number | 0 | The table column width |
+| `filterable` | Boolean | false | Is the column filterable |
+| `component` | Component | null | A dynamic component that can be injected |
 | `classes` | Object | {} | Component classes to parse |
 
 
