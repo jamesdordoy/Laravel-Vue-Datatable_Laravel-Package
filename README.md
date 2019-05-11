@@ -8,7 +8,7 @@ A Vue.js datatable component for Laravel that works with Bootstrap.
 * [Laravel](http://laravel.com/docs/) 5.x
 * [Bootstrap](http://getbootstrap.com/) 4
 
-This package makes use of the Laravel Vue Pagination component https://github.com/gilbitron/laravel-vue-pagination created by gilbitron. If you need a pagination component for other areas of the website and you are using a laravel API i highly suggest using this flexable component.
+This package makes use of the Laravel Vue Pagination component created by [gilbitron](https://github.com/gilbitron/laravel-vue-pagination). If you need a pagination component for other areas of the website and you are using a Laravel API i highly suggest using this flexable component.
 
 ## Demo
 
@@ -32,7 +32,7 @@ JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::cl
 php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
 ```
 
-###Options
+### Options
 
 ```json
 {
