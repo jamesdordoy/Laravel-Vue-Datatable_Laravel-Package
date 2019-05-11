@@ -1,6 +1,6 @@
 
 # Laravel Vue Datatable
-A Vue.js datatable component for Laravel paginators that works with Bootstrap.
+A Vue.js datatable component for Laravel that works with Bootstrap.
 
 ## Requirements
 
@@ -10,7 +10,7 @@ A Vue.js datatable component for Laravel paginators that works with Bootstrap.
 
 ## Demo
 
-See [https://laravel-vue-pagination.now.sh](https://laravel-vue-pagination.now.sh/)
+See 
 
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/datatable.png)
