@@ -30,7 +30,7 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 		- [Default Classes](#default-classes)
 		- [Column Props](#column-props)
 	- [Using Dynamic Components](#using-dynamic-components)
-		- [Example Button Component](#example-button-component)
+		- [Example Button Component](#example-button-component-(examplebutton.vue))
 
 
 ## Example
@@ -126,7 +126,7 @@ class UserController extends Controller
 ## Component Installation
 
 ```bash
-npm install laravel-vue-datatable
+$ npm install laravel-vue-datatable
 ```
 
 ### Register the Plugin
