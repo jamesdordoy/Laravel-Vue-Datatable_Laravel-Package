@@ -18,18 +18,20 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 - [Example](#example)
 - [Package Installation](#package-installation)
 	- [Add Service Provider](#add-service-provider)
-  	- [Publish the Config](#job-portal)
-  		- [Options](#community)
-  	- [Use the Trait](#job-portal)
-	- [Use the Controller Resource](#conferences)
-- [Component Installation](#podcasts)
-	- [Register the Plugin](#youtube-channels)
-	- [Basic Example](#official-examples)
-- [API](#tutorials)
-	- [Datatable Props](#datatable-props)
-- [Books](#books)
-- [Blog Posts](#blog-posts)
-- [Projects Using Vue.js](#projects-using-vuejs)
+  	- [Publish the Config](#publish-the-config)
+  		- [Package Options](#package-options)
+  	- [Use the Trait](#use-the-trait)
+	- [Use the Controller Resource](#use-the-controller-resource)
+- [Component Installation](#component-installation)
+	- [Register the Plugin](#register-the-plugin)
+	- [Basic Example](#basic-example)
+	- [API](#api)
+		- [Datatable Props](#datatable-props)
+		- [Default Classes](#default-classes)
+		- [Column Props](#column-props)
+	- [Using Dynamic Components](#using-dynamic-components)
+		- [Example Button Component](#example-button-component)
+
 
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png)
@@ -49,7 +51,7 @@ JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::cl
 $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
 ```
 
-#### Options
+#### Package Options
 
 ```json
 {
@@ -177,9 +179,9 @@ export default {
 }
 ```
 
-## API
+### API
 
-### Datatable Props
+#### Datatable Props
 
 | Name | Type | Default | Description  
 | --- | --- | --- | --- |
@@ -189,7 +191,7 @@ export default {
 | `classes` | Object | See Below | (optional) Table classes |
 | `pagination` | Object | {}  | (optional) props for [gilbitron/laravel-vue-pagination](https://github.com/gilbitron/laravel-vue-pagination#props) |
 
-### Default Classes
+#### Default Classes
 
 ```json
 {
@@ -222,7 +224,7 @@ export default {
 }
 ```
 
-### Column Props
+#### Column Props
 | Name | Type | Default | Description  
 | --- | --- | --- | --- |
 | `label ` | String | "" | The JSON url |
@@ -314,7 +316,7 @@ export default {
 }
 ```
 
-## Overriding the Filters &amp; Pagination Components
+## Overriding the Filters and Pagination Components
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
 
 ### DataTable
