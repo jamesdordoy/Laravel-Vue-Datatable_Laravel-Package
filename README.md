@@ -1,6 +1,6 @@
 
 # Laravel Vue Datatable
-A Vue.js datatable component for Laravel that works with Bootstrap.
+A Vue.js Datatable Component for Laravel that works with Bootstrap.
 
 ## Requirements
 
@@ -31,11 +31,11 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 		- [Column Props](#column-props)
 	- [Using Dynamic Components](#using-dynamic-components)
 		- [Example Button Component](#example-button-component)
-		- [Dynamic DataTable Columns](#dynamic-dataTable-columns)
+		- [Dynamic Datatable Columns](#dynamic-datatable-columns)
 	- [Overriding the Filters and Pagination Components](#overriding-the-filters-and-pagination-components)
-		- [Paginatior DataTable](#paginatior-dataTable)
+		- [Paginatior Datatable](#paginatior-datatable)
 		- [Example Filter](#example-filter)
-		- [Filter DataTable](#filter-dataTable)
+		- [Filter Datatable](#filter-datatable)
 	- [Styling the Datatable](#styling-the-datatable)
 		- [Tailwind Config](#tailwind-config)
 		- [Tailwind Datatable](#tailwind-datatable)
@@ -63,9 +63,9 @@ $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Provide
 ```json
 {
     "models": {
-        "search_term": "The term used in each model to declare if it is searchable by the datatable"
+        "search_term": "The term used in each Model to declare if it is searchable by the Datatable"
     },
-    "default_order_by": "the default order by column on page loads"
+    "default_order_by": "The default order by Column on Page Loads"
 }
 ```
 
@@ -107,11 +107,10 @@ The Collection Resource is expecting a paginated collection, so feel free to use
 ```php
 <?php
 
-namespace App\Http\Controllers\Back;
+namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class UserController extends Controller
@@ -143,7 +142,8 @@ import DataTable from 'laravel-vue-datatable';
 Vue.use(DataTable);
 ```
 
-### Basic Example 
+### Basic Example
+> UserDatatable.vue
 
 ```html
 <data-table
@@ -272,9 +272,9 @@ export default {
 }
 ```
 
-### Dynamic DataTable Columns
+### Dynamic Datatable Columns
 
-> (UserDataTable.vue)
+> (UserDatatable.vue)
 
 ```javascript
 
@@ -331,7 +331,7 @@ export default {
 ## Overriding the Filters and Pagination Components
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
 
-### Paginatior DataTable
+### Paginatior Datatable
 
 ```html
 <data-table
@@ -354,7 +354,7 @@ Once the URL has been updated by your customer paginator or filters, the table w
 
 ### Example Filter
 
-> (DataTableFilter.vue)
+> (DatatableFilter.vue)
 
 This example filter will control the length of the table manipulating the tableData.length property using v-model.
 
@@ -381,7 +381,7 @@ export default {
 }
 ```
 
-### Filter DataTable
+### Filter Datatable
 
 ```html
 <data-table
@@ -399,7 +399,7 @@ export default {
 ```
 
 ## Styling the Datatable
-You can edit the style of the datatable by overriding the classes prop. A example mixin config can be found be below for Tailwind:
+You can edit the style of the Datatable by overriding the `classes` prop. A example mixin config can be found be below for Tailwind:
 
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/tailwind-datatable.png)
 
