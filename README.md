@@ -6,9 +6,9 @@ A Vue.js datatable component for Laravel that works with Bootstrap.
 
 * [Vue.js](https://vuejs.org/) 2.x
 * [Laravel](http://laravel.com/docs/) 5.x
-* [Bootstrap](http://getbootstrap.com/) 4
+* [Bootstrap](http://getbootstrap.com/) 4 (Optional)
 
-This package makes use of the Laravel Vue Pagination component created by [gilbitron](https://github.com/gilbitron/laravel-vue-pagination). If you need a pagination component for other areas of your website and you are using a Laravel API i highly suggest using this flexible component.
+This package makes use of an optional default component, the [Laravel Vue Pagination](https://github.com/gilbitron/laravel-vue-pagination)  component created by [gilbitron](https://github.com/gilbitron). If you need a pagination component for other areas of your website and you are using a Laravel API &amp; Bootstrap, i highly suggest using this flexible component.
 
 ## Demo
 
@@ -17,22 +17,38 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png)
 
+- Table of Contents
+	- [Package Installation](#package-installation)
+		- [Add Service Provider](#add-service-provider)
+	  	- [Publish the Config](#job-portal)
+	  		- [Options](#community)
+	  	- [Use the Trait](#job-portal)
+  		- [Use the Controller Resource](#conferences)
+  	- [Component Installation](#podcasts)
+  		- [Register the Plugin](#youtube-channels)
+  		- [Basic Example](#official-examples)
+  	- [API](#tutorials)
+  		- [Datatable Props](#datatable-props)
+  - [Books](#books)
+  - [Blog Posts](#blog-posts)
+- [Projects Using Vue.js](#projects-using-vuejs)
+
 ## Package Installation
 ```
 $ composer require jamesdordoy/laravelvuedatatable
 ```
 
-## Add Service Provider
+### Add Service Provider
 ```
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 ```
 
-## Publish the Config
+### Publish the Config
 ```
-php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
+$ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
 ```
 
-### Options
+#### Options
 
 ```json
 {
@@ -44,8 +60,8 @@ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers
 ```
 
 
-## Use the Trait
-This trait is optional and simply provides a basic method for filtering your data based on the parameters set in the model. If you would like more control on how the data is filtered, feel free to omit this trait use your own filtering methods. Just remember to paginate the results!
+### Use the Trait
+This trait is optional and simply provides a basic method for filtering your data based on the $dataTableColumns attribute set in the model. If you would like more control on how the data is filtered, feel free to omit this trait use your own filtering methods. Just remember to paginate the results!
 
 ```php
 <?php
@@ -75,7 +91,7 @@ class User extends Authenticatable
 }
 ```
 
-## Use the Controller Resource
+### Use the Controller Resource
 The Collection Resource is expecting a paginated collection, so feel free to use your own queries if your require more complex filtering.
 
 ```php
