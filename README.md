@@ -14,24 +14,25 @@ This package makes use of an optional default component, the [Laravel Vue Pagina
 
 See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io/vue-datatable/)
 
+## Table of Contents
+- [Example](#example)
+- [Package Installation](#package-installation)
+	- [Add Service Provider](#add-service-provider)
+  	- [Publish the Config](#job-portal)
+  		- [Options](#community)
+  	- [Use the Trait](#job-portal)
+	- [Use the Controller Resource](#conferences)
+- [Component Installation](#podcasts)
+	- [Register the Plugin](#youtube-channels)
+	- [Basic Example](#official-examples)
+- [API](#tutorials)
+	- [Datatable Props](#datatable-props)
+- [Books](#books)
+- [Blog Posts](#blog-posts)
+- [Projects Using Vue.js](#projects-using-vuejs)
+
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png)
-
-- Table of Contents
-	- [Package Installation](#package-installation)
-		- [Add Service Provider](#add-service-provider)
-	  	- [Publish the Config](#job-portal)
-	  		- [Options](#community)
-	  	- [Use the Trait](#job-portal)
-  		- [Use the Controller Resource](#conferences)
-  	- [Component Installation](#podcasts)
-  		- [Register the Plugin](#youtube-channels)
-  		- [Basic Example](#official-examples)
-  	- [API](#tutorials)
-  		- [Datatable Props](#datatable-props)
-  - [Books](#books)
-  - [Blog Posts](#blog-posts)
-- [Projects Using Vue.js](#projects-using-vuejs)
 
 ## Package Installation
 ```
