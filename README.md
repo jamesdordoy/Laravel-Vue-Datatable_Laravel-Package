@@ -174,7 +174,6 @@ export default {
 
 ### Default Classes
 
-### Default Classes
 ```json
 {
     "table-container": {
