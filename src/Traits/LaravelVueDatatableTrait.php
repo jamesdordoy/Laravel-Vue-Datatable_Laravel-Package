@@ -29,7 +29,7 @@ trait LaravelVueDatatableTrait
 
                 $first = true;
 
-                if (count($columns)) {
+                if (count($columns) && ! is_null(config('laravel-vue-datatables.models.search_term'))) {
                     foreach ($columns as $key => $column) {
                         if ($first) {
     
