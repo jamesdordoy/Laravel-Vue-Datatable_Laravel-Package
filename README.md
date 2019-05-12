@@ -41,7 +41,7 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 		- [Tailwind Datatable](#tailwind-datatable)
 
 ## Example
-![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png)
+![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png?a=a)
 
 ## Package Installation
 ```
