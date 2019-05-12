@@ -45,6 +45,8 @@ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers
 
 
 ## Use the Trait
+This trait is optional and simply provides a basic method for filtering your data based on the parameters set in the model. If you would like more control on how the data is filtered, feel free to omit this trait use your own filtering methods. Just remember to paginate the results!
+
 ```php
 <?php
 
