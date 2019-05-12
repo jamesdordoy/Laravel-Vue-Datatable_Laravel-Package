@@ -175,11 +175,6 @@ export default {
                     name: 'email',
                     filterable: true,
                 },
-                {
-                    label: '',
-                    name: 'View',
-                    filterable: false,
-                },
             ]
         }
     },
