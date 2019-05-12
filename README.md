@@ -30,8 +30,15 @@ See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io
 		- [Default Classes](#default-classes)
 		- [Column Props](#column-props)
 	- [Using Dynamic Components](#using-dynamic-components)
-		- [Example Button Component](#example-button-component-(examplebutton.vue))
-
+		- [Example Button Component](#example-button-component)
+		- [Dynamic DataTable Columns](#dynamic-dataTable-columns)
+	- [Overriding the Filters and Pagination Components](#overriding-the-filters-and-pagination-components)
+		- [Paginatior DataTable](#paginatior-dataTable)
+		- [Example Filter](#example-filter)
+		- [Filter DataTable](#filter-dataTable)
+	- [Styling the Datatable](#styling-the-datatable)
+		- [Tailwind Config](#tailwind-config)
+		- [Tailwind Datatable](#tailwind-datatable)
 
 ## Example
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png)
@@ -235,10 +242,12 @@ export default {
 | `classes` | Object | {} | Component classes to parse |
 
 
-## Using dynamic components
+## Using Dynamic Components
 You can also inject your own components into the table such as buttons. Your buttons, links etc can also listen for events.
 
-### Example button component (ExampleButton.vue)
+### Example Button Component
+
+> (ExampleButton.vue)
 
 ```html
 <template>
@@ -263,7 +272,10 @@ export default {
 }
 ```
 
-### Datatable Columns (UserDataTable.vue)
+### Dynamic DataTable Columns
+
+> (UserDataTable.vue)
+
 ```javascript
 
 import ExampleButton './ExampleButton.vue';
@@ -319,7 +331,7 @@ export default {
 ## Overriding the Filters and Pagination Components
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
 
-### DataTable
+### Paginatior DataTable
 
 ```html
 <data-table
@@ -340,7 +352,10 @@ If the included pagination or filters do not meet your requirements or if the st
 
 Once the URL has been updated by your customer paginator or filters, the table will re-render. Alterativly, if updating the URL is troublesome, different table filters can be manipulated by your filters using the v-model directive:
 
-### Example filter (DataTableFilter.vue)
+### Example Filter
+
+> (DataTableFilter.vue)
+
 This example filter will control the length of the table manipulating the tableData.length property using v-model.
 
 ```html
@@ -366,7 +381,7 @@ export default {
 }
 ```
 
-### DataTable
+### Filter DataTable
 
 ```html
 <data-table
@@ -388,7 +403,9 @@ You can edit the style of the datatable by overriding the classes prop. A exampl
 
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/tailwind-datatable.png)
 
-### Tailwind Config (mixins/tailwind.js)
+### Tailwind Config
+
+> (mixins/tailwind.js)
 
 Custom Class
 
@@ -457,7 +474,7 @@ export default {
 }
 ```
 
-### Datatable
+### Tailwind Datatable
 
 ```html
 <data-table
