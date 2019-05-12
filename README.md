@@ -173,6 +173,8 @@ export default {
 | `pagination` | Object | {}  | (optional) props for [gilbitron/laravel-vue-pagination](https://github.com/gilbitron/laravel-vue-pagination#props) |
 
 ### Default Classes
+
+### Default Classes
 ```json
 {
     "table-container": {
@@ -187,6 +189,12 @@ export default {
 
     },
     "t-body": {
+        
+    },
+    "t-head-tr": {
+
+    },
+    "t-body-tr": {
         
     },
     "td": {
