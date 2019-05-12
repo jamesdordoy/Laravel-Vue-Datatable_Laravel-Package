@@ -74,6 +74,8 @@ class User extends Authenticatable
 ```
 
 ## Use the Controller Resource
+The Collection Resource is expecting a paginated collection, so feel free to use your own queries if your require more complex filtering.
+
 ```php
 <?php
 
