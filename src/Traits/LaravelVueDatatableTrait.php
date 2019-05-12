@@ -29,21 +29,18 @@ trait LaravelVueDatatableTrait
 
                 $first = true;
 
-                if (count($columns) && ! is_null(config('laravel-vue-datatables.models.search_term'))) {
+                if (count($columns)) {
                     foreach ($columns as $key => $column) {
                         if ($first) {
     
                             $searchTerm = config('laravel-vue-datatables.models.search_term');
-    
-                            if (is_null($searchTerm)) {
-                                $searchTerm = 'searchable';
-                            }
-    
-                            if ($column[$searchTerm]) {
+
+                            if (isset($column[$searchTerm])) {
                                 $query->where($key, 'like', '%' . $searchValue . '%');
                             }
-    
-                            $first = false;
+
+                            $first = false;   
+                            
                         } else {
                             if ($column[$searchTerm]) {
                                 $query->orWhere($key, 'like', '%' . $searchValue . '%');
