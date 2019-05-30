@@ -244,6 +244,8 @@ You can also inject your own components into the table such as buttons. Your but
 
 > (ExampleButton.vue)
 
+Note: in your custom components, events are passed through the props by reference. So you need to execute your function in the click handler to omit the event back to the parent component unless you intend on handling the event here.
+
 ```html
 <template>
     <button :class="classes" @click="click(data)" title="Update">
