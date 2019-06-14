@@ -7,7 +7,7 @@ trait LaravelVueDatatableTrait
     /**
      * Method to get a Vue Datatable Query
      */
-    public function scopeDataTableQuery($query, $column = 0, $orderBy = 'asc', $limit = 15, $searchValue = '')
+    public function scopeDataTableQuery($query, $column = 0, $orderBy = 'asc', $searchValue = '')
     {
         $columns = $this->dataTableColumns;
 
@@ -51,6 +51,6 @@ trait LaravelVueDatatableTrait
             });
         }
 
-        return $query->paginate($limit);
+        return $query;
     }
 }
