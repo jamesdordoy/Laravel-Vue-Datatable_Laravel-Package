@@ -119,11 +119,12 @@ class UserController extends Controller
     {   
         $length = $request->input('length');
         $column = $request->input('column'); //Index
-        $dir = $request->input('dir', 'asc');
+        $orderBy = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
-
-        $data = User::dataTableQuery($column, $dir, $length, $searchValue);
-
+        
+        $query = User::dataTableQuery($column, $orderBy, $searchValue);
+        $data = $query->paginate($length);
+        
         return new DataTableCollectionResource($data);
     }
 }
