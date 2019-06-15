@@ -1,18 +1,18 @@
 {
-  "name": "jamesdordoy/laravelvuedatatable",
-  "authors": [
-    {
-      "name": "Home",
-      "email": "jamesdordoy@gmail.com"
+    "name": "jamesdordoy/laravelvuedatatable",
+    "authors": [
+        {
+            "name": "Home",
+            "email": "jamesdordoy@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "jamesdordoy\\laravelvuedatatable\\": "src/"
+        },
+        "classmap": [
+            "src/"
+        ]
     }
-  ],
-  "require": {},
-  "autoload": {
-    "psr-4": {
-      "jamesdordoy\\laravelvuedatatable\\": "src/"
-    },
-    "classmap": [
-      "src/"
-    ]
-  }
 }
