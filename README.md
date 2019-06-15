@@ -1,43 +1,59 @@
-# Laravel Vue Datatable
 
+# Laravel Vue Datatable
 A Vue.js Datatable Component for Laravel that works with Bootstrap.
 
 ## Requirements
 
-- [Vue.js](https://vuejs.org/) 2.x
-- [Laravel](http://laravel.com/docs/) 5.x
-- [Bootstrap](http://getbootstrap.com/) 4 (Optional)
+* [Vue.js](https://vuejs.org/) 2.x
+* [Laravel](http://laravel.com/docs/) 5.x
+* [Bootstrap](http://getbootstrap.com/) 4 (Optional)
 
-This package makes use of an optional default component, the [Laravel Vue Pagination](https://github.com/gilbitron/laravel-vue-pagination) component created by [gilbitron](https://github.com/gilbitron). If you need a pagination component for other areas of your website and you are using a Laravel API &amp; Bootstrap, i highly suggest using this flexible component.
+This package makes use of an optional default component, the [Laravel Vue Pagination](https://github.com/gilbitron/laravel-vue-pagination)  component created by [gilbitron](https://github.com/gilbitron). If you need a pagination component for other areas of your website and you are using a Laravel API &amp; Bootstrap, i highly suggest using this flexible component.
 
 ## Demo
 
 See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io/vue-datatable/)
 
 ## Table of Contents
-
 - [Example](#example)
-- [Package Installation](#package-installation) - [Add Service Provider](#add-service-provider) - [Publish the Config](#publish-the-config) - [Package Options](#package-options) - [Use the Trait](#use-the-trait) - [Use the Controller Resource](#use-the-controller-resource)
-- [Component Installation](#component-installation) - [Register the Plugin](#register-the-plugin) - [Basic Example](#basic-example) - [API](#api) - [Datatable Props](#datatable-props) - [Default Classes](#default-classes) - [Column Props](#column-props) - [Using Dynamic Components](#using-dynamic-components) - [Example Button Component](#example-button-component) - [Dynamic Datatable Columns](#dynamic-datatable-columns) - [Overriding the Filters and Pagination Components](#overriding-the-filters-and-pagination-components) - [Paginatior Datatable](#paginatior-datatable) - [Example Filter](#example-filter) - [Filter Datatable](#filter-datatable) - [Styling the Datatable](#styling-the-datatable) - [Tailwind Config](#tailwind-config) - [Tailwind Datatable](#tailwind-datatable)
+- [Package Installation](#package-installation)
+	- [Add Service Provider](#add-service-provider)
+  	- [Publish the Config](#publish-the-config)
+  		- [Package Options](#package-options)
+  	- [Use the Trait](#use-the-trait)
+	- [Use the Controller Resource](#use-the-controller-resource)
+- [Component Installation](#component-installation)
+	- [Register the Plugin](#register-the-plugin)
+	- [Basic Example](#basic-example)
+	- [API](#api)
+		- [Datatable Props](#datatable-props)
+		- [Default Classes](#default-classes)
+		- [Column Props](#column-props)
+	- [Using Dynamic Components](#using-dynamic-components)
+		- [Example Button Component](#example-button-component)
+		- [Dynamic Datatable Columns](#dynamic-datatable-columns)
+	- [Overriding the Filters and Pagination Components](#overriding-the-filters-and-pagination-components)
+		- [Paginatior Datatable](#paginatior-datatable)
+		- [Example Filter](#example-filter)
+		- [Filter Datatable](#filter-datatable)
+	- [Styling the Datatable](#styling-the-datatable)
+		- [Tailwind Config](#tailwind-config)
+		- [Tailwind Datatable](#tailwind-datatable)
 
 ## Example
-
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/bootstrap-datatable.png?a=a)
 
 ## Package Installation
-
 ```
 $ composer require jamesdordoy/laravelvuedatatable
 ```
 
 ### Add Service Provider
-
 ```
 JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
 ```
 
 ### Publish the Config
-
 ```
 $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider"
 ```
@@ -46,15 +62,15 @@ $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Provide
 
 ```json
 {
-  "models": {
-    "search_term": "The term used in each Model to declare if it is searchable by the Datatable"
-  },
-  "default_order_by": "The default order by Column on Page Loads"
+    "models": {
+        "search_term": "The term used in each Model to declare if it is searchable by the Datatable"
+    },
+    "default_order_by": "The default order by Column on Page Loads"
 }
 ```
 
-### Use the Trait
 
+### Use the Trait
 This trait is optional and simply provides a basic method for filtering your data based on the $dataTableColumns attribute set in the model. If you would like more control on how the data is filtered, feel free to omit this trait use your own filtering methods. Just remember to paginate the results!
 
 ```php
@@ -86,7 +102,6 @@ class User extends Authenticatable
 ```
 
 ### Use the Controller Resource
-
 The Collection Resource is expecting a paginated collection, so feel free to use your own queries if your require more complex filtering.
 
 ```php
@@ -101,15 +116,15 @@ use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 class UserController extends Controller
 {
     public function index(Request $request)
-    {
+    {   
         $length = $request->input('length');
         $column = $request->input('column'); //Index
         $orderBy = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
-
+        
         $query = User::dataTableQuery($column, $orderBy, $searchValue);
         $data = $query->paginate($length);
-
+        
         return new DataTableCollectionResource($data);
     }
 }
@@ -124,12 +139,11 @@ $ npm install laravel-vue-datatable
 ### Register the Plugin
 
 ```javascript
-import DataTable from "laravel-vue-datatable";
+import DataTable from 'laravel-vue-datatable';
 Vue.use(DataTable);
 ```
 
 ### Basic Example
-
 > UserDatatable.vue
 
 ```html
@@ -142,78 +156,89 @@ Vue.use(DataTable);
 
 ```javascript
 export default {
-  name: "app",
-  data() {
-    return {
-      perPage: ["10", "25", "50"],
-      columns: [
-        {
-          label: "ID",
-          name: "id",
-          filterable: true
-        },
-        {
-          label: "Name",
-          name: "name",
-          filterable: true
-        },
-        {
-          label: "Email",
-          name: "email",
-          filterable: true
+    name: 'app',
+    data() {
+        return {
+            perPage: ['10', '25', '50'],
+            columns: [
+                {
+                    label: 'ID',
+                    name: 'id',
+                    filterable: true,
+                },
+                {
+                    label: 'Name',
+                    name: 'name',
+                    filterable: true,
+                },
+                {
+                    label: 'Email',
+                    name: 'email',
+                    filterable: true,
+                },
+            ]
         }
-      ]
-    };
-  }
-};
+    },
+}
 ```
 
 ### API
 
 #### Datatable Props
 
-| Name         | Type   | Default              | Description                                                                                                        |
-| ------------ | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `url`        | String | "/"                  | The JSON url                                                                                                       |
-| `columns`    | Array  | []                   | The table columns                                                                                                  |
-| `per-page`   | Array  | [ '10', '25', '50' ] | (optional) Amount to be displayed                                                                                  |
-| `classes`    | Object | See Below            | (optional) Table classes                                                                                           |
-| `pagination` | Object | {}                   | (optional) props for [gilbitron/laravel-vue-pagination](https://github.com/gilbitron/laravel-vue-pagination#props) |
+| Name | Type | Default | Description  
+| --- | --- | --- | --- |
+| `url ` | String | "/" | The JSON url |
+| `columns` | Array | [] | The table columns |
+| `per-page` | Array | [ '10', '25', '50' ] | (optional) Amount to be displayed |
+| `classes` | Object | See Below | (optional) Table classes |
+| `pagination` | Object | {}  | (optional) props for [gilbitron/laravel-vue-pagination](https://github.com/gilbitron/laravel-vue-pagination#props) |
 
 #### Default Classes
 
 ```json
 {
-  "table-container": {
-    "table-responsive": true
-  },
-  "table": {
-    "table": true,
-    "table-striped": true,
-    "table-dark": true
-  },
-  "t-head": {},
-  "t-body": {},
-  "t-head-tr": {},
-  "t-body-tr": {},
-  "td": {},
-  "th": {}
+    "table-container": {
+        "table-responsive": true,
+    },
+    "table": {
+        "table": true,
+        "table-striped": true,
+        "table-dark": true,
+    },
+    "t-head": {
+
+    },
+    "t-body": {
+        
+    },
+    "t-head-tr": {
+
+    },
+    "t-body-tr": {
+        
+    },
+    "td": {
+
+    },
+    "th": {
+        
+    },
 }
 ```
 
 #### Column Props
+| Name | Type | Default | Description  
+| --- | --- | --- | --- |
+| `label ` | String | "" | The JSON url |
+| `name` | String | "" | The table column header name |
+| `width` | Number | 0 | The table column width |
+| `filterable` | Boolean | false | Is the column filterable |
+| `component` | Component | null | A dynamic component that can be injected |
+| `classes` | Object | {} | Component classes to parse |
 
-| Name         | Type      | Default | Description                              |
-| ------------ | --------- | ------- | ---------------------------------------- |
-| `label`      | String    | ""      | The JSON url                             |
-| `name`       | String    | ""      | The table column header name             |
-| `width`      | Number    | 0       | The table column width                   |
-| `filterable` | Boolean   | false   | Is the column filterable                 |
-| `component`  | Component | null    | A dynamic component that can be injected |
-| `classes`    | Object    | {}      | Component classes to parse               |
 
 ## Using Dynamic Components
-
 You can also inject your own components into the table such as buttons. Your buttons, links etc can also listen for events.
 
 ### Example Button Component
@@ -236,13 +261,13 @@ Note: in your custom components, events are passed through the props by referenc
 
 ```javascript
 export default {
-  props: {
-    data: {},
-    name: {},
-    click: {},
-    classes: {}
-  }
-};
+    props: {
+        data: {},
+        name: {},
+        click: {},
+        classes: {},
+    }
+}
 ```
 
 ### Dynamic Datatable Columns
@@ -250,6 +275,7 @@ export default {
 > (UserDatatable.vue)
 
 ```javascript
+
 import ExampleButton './ExampleButton.vue';
 
 export default {
@@ -279,11 +305,11 @@ export default {
                 filterable: false,
                 component: ExampleButton,
                 click: this.alertMe,
-                classes: {
+                classes: { 
                     'btn': true,
                     'btn-primary': true,
                     'btn-sm': true,
-                }
+                } 
             },
             ]
         }
@@ -301,7 +327,6 @@ export default {
 ```
 
 ## Overriding the Filters and Pagination Components
-
 If the included pagination or filters do not meet your requirements or if the styling is incorrect, they can be over-written using scoped slots.
 
 ### Paginatior Datatable
@@ -313,7 +338,7 @@ If the included pagination or filters do not meet your requirements or if the st
     :per-page="perPage">
 
     <span slot="pagination" slot-scope="{ links, meta }">
-        <paginator
+        <paginator 
             :meta="meta"
             :links="links"
             @next="updateUrl"
@@ -348,8 +373,10 @@ This example filter will control the length of the table manipulating the tableD
 
 ```javascript
 export default {
-  props: ["tableData", "perPage"]
-};
+    props: [
+        "tableData", "perPage"
+    ]
+}
 ```
 
 ### Filter Datatable
@@ -370,7 +397,6 @@ export default {
 ```
 
 ## Custom Filters
-
 You can also add your own custom filters to be sent to the Laravel backend:
 
 ### Datatable
@@ -414,6 +440,7 @@ data() {
 ### Example Filter
 
 ```html
+
 <div class="row mb-3">
     <div class="col-md-3">
         <select
@@ -444,24 +471,25 @@ data() {
             placeholder="Search Table">
     </div>
 </div>
-```
 
+```
 This added "isAdmin" filter for staff type will be send to the Laravel backend and can be used to manipulate the results:
 
 ```php
-$query = User::dataTableQuery($column, $dir, $length, $searchValue);
 
+$query = User::dataTableQuery($column, $dir, $length, $searchValue);
+        
 if (isset($isAdmin) && ! empty($isAdmin)) {
     $query->where("type", $isAdmin);
 }
-
+    
 $data = $query->paginate($length);
 
 return new DataTableCollectionResource($data);
+
 ```
 
 ## Styling the Datatable
-
 You can edit the style of the Datatable by overriding the `classes` prop. A example mixin config can be found be below for Tailwind:
 
 ![Image description](https://www.jamesdordoy.co.uk/images/projects/tailwind-datatable.png)
@@ -473,65 +501,68 @@ You can edit the style of the Datatable by overriding the `classes` prop. A exam
 Custom Class
 
 ```css
-.stripped-table:nth-child(even) {
-  @apply bg-black;
-}
+  .stripped-table:nth-child(even) {
+    @apply bg-black;
+  }
 ```
 
 ```javascript
 export default {
-  data() {
-    return {
-      classes: {
-        "table-container": {
-          "justify-center": true,
-          "w-full": true,
-          flex: true,
-          rounded: true,
-          "mb-6": true,
-          "shadow-md": true
-        },
-        table: {
-          "text-left": true,
-          "w-full": true,
-          "border-collapse": true
-        },
-        "t-head": {
-          "text-grey-dark": true,
-          "bg-black": true,
-          "border-grey-light": true,
-          "py-4": true,
-          "px-6": true
-        },
-        "t-body": {
-          "bg-grey-darkest": true
-        },
-        "t-head-tr": {},
-        "t-body-tr": {
-          "stripped-table": true,
-          "bg-grey-darkest": true
-        },
-        td: {
-          "py-4": true,
-          "px-6": true,
-          "border-b": true,
-          "border-grey-light": true,
-          "text-grey-light": true
-        },
-        th: {
-          "py-4": true,
-          "px-6": true,
-          "font-bold": true,
-          uppercase: true,
-          "text-sm": true,
-          "text-grey-dark": true,
-          "border-b": true,
-          "border-grey-light": true
-        }
-      }
-    };
-  }
-};
+    data() {
+        return {
+            classes: { 
+                'table-container': {
+                    'justify-center': true,
+                    'w-full': true,
+                    'flex': true,
+                    'rounded': true,
+                    'mb-6': true,
+                    'shadow-md': true,
+                },
+                table: {
+                    'text-left': true,
+                    'w-full': true,
+                    'border-collapse': true,
+                },
+                't-head': {
+                    'text-grey-dark': true,
+                    'bg-black': true,
+                    'border-grey-light': true,
+                    'py-4': true,
+                    'px-6': true,
+                },
+                "t-body": {
+                    'bg-grey-darkest': true,
+                    
+                },
+                "t-head-tr": {
+                    
+                },
+                "t-body-tr": {
+                    'stripped-table': true,
+                    'bg-grey-darkest': true,
+                },
+                "td": {
+                    'py-4': true,
+                    'px-6': true,
+                    'border-b': true,
+                    'border-grey-light': true,
+                    'text-grey-light': true,
+                },
+                "th": {
+                    'py-4': true,
+                    'px-6': true,
+                    'font-bold': true,
+                    'uppercase': true,
+                    'text-sm': true,
+                    'text-grey-dark': true,
+                    'border-b': true,
+                    'border-grey-light': true,
+                },
+            }
+        };
+    },
+}
 ```
 
 ### Tailwind Datatable
@@ -550,7 +581,7 @@ export default {
     </span>
 
     <span slot="pagination" slot-scope="{ links, meta }">
-        <paginator
+        <paginator 
             @next="updateUrl"
             @prev="updateUrl"
             :meta="meta"
@@ -561,32 +592,35 @@ export default {
 ```
 
 ```javascript
-import TailwindDatatable from "../mixins/tailwind.js";
+
+import TailwindDatatable from '../mixins/tailwind.js';
 
 export default {
-  data() {
-    return {
-      url: "http://vue-datatable.test/ajax",
-      perPage: ["10", "25", "50"],
-      columns: [
-        {
-          label: "ID",
-          name: "id",
-          filterable: true
-        },
-        {
-          label: "Name",
-          name: "name",
-          filterable: true
-        },
-        {
-          label: "Email",
-          name: "email",
-          filterable: true
+    data() {
+        return {
+            url: 'http://vue-datatable.test/ajax',
+            perPage: ['10', '25', '50'],
+            columns: [
+            {
+                label: 'ID',
+                name: 'id',
+                filterable: true,
+            },
+            {
+                label: 'Name',
+                 name: 'name',
+                filterable: true,
+            },
+            {
+                label: 'Email',
+                name: 'email',
+                filterable: true,
+            }
+            ]
         }
-      ]
-    };
-  },
-  mixins: [TailwindDatatable]
-};
+    },
+	mixins: [
+		TailwindDatatable
+	]
+}
 ```
