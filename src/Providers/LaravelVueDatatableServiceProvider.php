@@ -24,7 +24,7 @@ class LaravelVueDatatableServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/laravel-vue-datatables.php' => config_path('laravel-vue-datatables.php')
+            __DIR__.'/../../config/laravel-vue-datatables.php' => config_path('laravel-vue-datatables.php')
         ], 'config');
     }
 }

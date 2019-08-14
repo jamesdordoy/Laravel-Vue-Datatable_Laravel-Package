@@ -7,12 +7,12 @@ trait LaravelVueDatatableTrait
     /**
      * Method to get a Vue Datatable Query
      */
-    public function scopeDataTableQuery($query, $column = 0, $orderBy = 'asc', $searchValue = '')
+    public function scopeDataTableQuery($query, $column = 'id', $orderBy = 'asc', $searchValue = '')
     {
         $columns = $this->dataTableColumns;
 
-        if (isset(array_keys($columns)[$column])) {
-            $query = $query->orderBy(array_keys($columns)[$column], $orderBy);
+        if (isset($column) && ! empty($column) && array_key_exists($column, $columns)) {
+            $query = $query->orderBy($column, $orderBy);
         } else {
             $defaultOrderBy = config('laravel-vue-datatables.default_order_by');
             if (is_null($defaultOrderBy)) {
