@@ -9,10 +9,17 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "jamesdordoy\\laravelvuedatatable\\": "src/"
+            "JamesDordoy\\LaravelVueDatatable\\": "src/"
         },
         "classmap": [
             "src/"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JamesDordoy\\LaravelVueDatatable\\Providers\\LaravelVueDatatableServiceProvider"
+            ]
+        }
     }
 }
