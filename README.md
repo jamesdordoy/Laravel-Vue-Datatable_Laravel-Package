@@ -44,13 +44,13 @@ $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Provide
 
 #### Package Options
 
-```json
-{
-    "models": {
-        "search_term": "The term used in each Model to declare if it is searchable by the Datatable"
-    },
-    "default_order_by": "The default order by Column on Page Loads"
-}
+```php
+[
+    'models' => [
+        "search_term" => "searchable"
+    ],
+    "default_order_by" => "id"
+]
 ```
 
 
