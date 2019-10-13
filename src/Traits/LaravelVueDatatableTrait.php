@@ -11,7 +11,7 @@ trait LaravelVueDatatableTrait
     {
         $columns = $this->dataTableColumns;
 
-        if (isset($column) && ! empty($column) && array_key_exists($column, $columns)) {
+        if (isset($column) && ! empty($column)) {
             $query = $query->orderBy($column, $orderBy);
         } else {
             $defaultOrderBy = config('laravel-vue-datatables.default_order_by');
