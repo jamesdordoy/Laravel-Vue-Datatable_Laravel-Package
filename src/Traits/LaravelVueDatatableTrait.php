@@ -2,12 +2,14 @@
 
 namespace JamesDordoy\LaravelVueDatatable\Traits;
 
+use DB;
+
 trait LaravelVueDatatableTrait
 {
     /**
      * Method to get a Vue Datatable Query
      */
-    public function scopeDataTableQuery($query, $column = 'id', $orderBy = 'asc', $searchValue = '')
+    public function scopeEloquentQuery($query, $column = 'id', $orderBy = 'asc', $searchValue = '')
     {
         $columns = $this->dataTableColumns;
 
@@ -40,6 +42,43 @@ trait LaravelVueDatatableTrait
                     }
                 }
             });
+        }
+
+        return $query;
+    }
+
+    public function scopeQueryBuilderQuery($query, $column = 'id', $orderBy = 'asc', $searchValue = '')
+    {
+        $orderByString = '';
+
+        if (count(explode(".", $column)) > 1) {
+            $orderByString = $column;
+        } else {
+            $orderByString = $this->getTable() . ".$column";
+        }
+
+        $columnKeys = array_keys($this->dataTableColumns);
+        
+        $query = DB::table($this->getTable())
+            ->select($columnKeys)
+            ->orderBy($orderByString, $orderBy);
+
+        if ($searchValue) {
+
+            $columns = $this->dataTableColumns;
+            $searchTerm = config('laravel-vue-datatables.models.search_term');
+            $first = true;
+
+            foreach ($columns as $key => $col) {
+                if (isset($col[$searchTerm])) {
+                    if ($first && isset($column[$searchTerm])) {
+                        $query = $query->where($this->getTable() . ".$key", 'LIKE', "%{$searchValue}%");
+                        $first = false;
+                    } else {
+                        $query = $query->orWhere($this->getTable() . ".$key", 'LIKE', "%{$searchValue}%");
+                    }
+                }
+            } 
         }
 
         return $query;
