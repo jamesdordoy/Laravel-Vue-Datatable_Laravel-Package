@@ -74,7 +74,7 @@ trait LaravelVueDatatableTrait
                     if ($first && isset($column[$searchTerm])) {
                         $query = $query->where($this->getTable() . ".$key", 'LIKE', "%{$searchValue}%");
                         $first = false;
-                    } else {
+                    } else if (isset($column[$searchTerm])) {
                         $query = $query->orWhere($this->getTable() . ".$key", 'LIKE', "%{$searchValue}%");
                     }
                 }
