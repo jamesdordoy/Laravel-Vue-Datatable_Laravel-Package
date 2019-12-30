@@ -2,7 +2,8 @@
 
 return [
     'models' => [
-        "search_term" => "searchable"
+        "search_term" => "searchable",
+        "order_term" => "orderable",
     ],
-    "default_order_by" => "id"
+    "default_order_by" => "id",
 ];
