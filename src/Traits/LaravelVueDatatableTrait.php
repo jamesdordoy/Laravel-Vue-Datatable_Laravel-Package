@@ -222,8 +222,10 @@ trait LaravelVueDatatableTrait
         return $query;
     }
 
-    private function eloquentOrderBy($query, $column, $orderByDir)
+    private function eloquentOrderBy($query, $column, $orderByDir = "asc")
     {
+        $orderByDir = isset($orderByDir) ? $orderByDir : 'asc';
+        
         //If a orderBy has been provided
         if (isset($column) && ! empty($column)) {
             $defaultOrderBy = config('laravel-vue-datatables.models.order_term');
@@ -267,12 +269,28 @@ trait LaravelVueDatatableTrait
             }
         }
 
-        //Remove relationships not required for query
-        $with = array_merge($belongsTo, $hasMany, $belongsToMany);
-        $relationships = array_intersect($with , $relationships);
+        $with = [];
 
-        if (count($relationships)) {
-            return $query->with($relationships);
+        foreach ($belongsTo as $key => $item) {
+            if (in_array($item, $relationships)) {
+                $with[] = $item;
+            }
+        }
+
+        foreach ($hasMany as $key => $item) {
+            if (in_array($item, $relationships)) {
+                $with[] = $item;
+            }
+        }
+
+        foreach ($belongsToMany as $key => $item) {
+            if (! is_numeric($key) && in_array($key, $relationships)){
+                $with[$key] = $item;
+            }       
+        }
+
+        if (count($with)) {
+            return $query->with($with);
         }
     }
 
