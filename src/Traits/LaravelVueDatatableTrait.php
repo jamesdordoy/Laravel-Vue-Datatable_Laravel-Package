@@ -5,6 +5,7 @@ namespace JamesDordoy\LaravelVueDatatable\Traits;
 use DB;
 use Illuminate\Support\Str;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
+use JamesDordoy\LaravelVueDatatable\Exceptions\ExceptionHandler;
 use JamesDordoy\LaravelVueDatatable\Exceptions\ColumnNotFoundException;
 use JamesDordoy\LaravelVueDatatable\Exceptions\ColumnNotOrderableException;
 use JamesDordoy\LaravelVueDatatable\Exceptions\RelationshipModelNotSetException;
@@ -19,8 +20,10 @@ trait LaravelVueDatatableTrait
      */
     public function scopeEloquentQuery($query, $orderBy = 'id', $orderByDir = 'asc', $searchValue = '', $relationships = [])
     {
+        $exceptionHandler = new ExceptionHandler;
+
         //Get select data
-        $query = $this->selectData($query);
+        $query = $this->selectData($query, $exceptionHandler);
 
         $query = $this->eloquentOrderBy($query, $orderBy, $orderByDir);
 
@@ -35,19 +38,6 @@ trait LaravelVueDatatableTrait
         return $query;
     }
 
-    private function getColumnKeys() {
-        //Select columns defined in the model
-        $columnKeys = array_keys($this->dataTableColumns);
-
-        //Prefix keys with table name
-        foreach ($columnKeys as $index => $key) {
-            $columnKeys[$index] = $this->getTable() . ".$key";
-        }
-
-        return $columnKeys;
-    }
-
-
     private function createRelationshipModel($path)
     {
         try {
@@ -59,28 +49,21 @@ trait LaravelVueDatatableTrait
         }
     }
 
-    private function selectData($query)
+    private function selectData($query, $exceptionHandler)
     {
         //Select this tables columns defined in the model
-        $columnKeys = $this->getColumnKeys();
+        $columnKeys = array_keys($this->dataTableColumns);
+        
+        //Prefix keys with table name
+        foreach ($columnKeys as $index => $key) {
+            $columnKeys[$index] = $this->getTable() . ".$key";
+        }
 
         $defaultOrderBy = config('laravel-vue-datatables.models.order_term');
 
         //Attach local foreign keys for joining
         if (isset($this->dataTableRelationships['belongsTo'])) {
             foreach ($this->dataTableRelationships['belongsTo'] as $tableName => $options) {
-                $columnKeys[count($columnKeys) + 1] = $this->getTable() . "." . $options['foreign_key'];
-            }
-        }
-        
-        //Attach related foreign keys
-        if (isset($this->dataTableRelationships['hasMany'])) {            
-            foreach ($this->dataTableRelationships['hasMany'] as $tableName => $options) {
-                if (! isset($options['model'])) {     
-                    throw new RelationshipModelNotSetException(
-                        "Model not set on relationship: $tableName"
-                    );
-                }
 
                 if (! isset($options['foreign_key'])) {
                     throw new RelationshipForeignKeyNotSetException(
@@ -88,25 +71,11 @@ trait LaravelVueDatatableTrait
                     );
                 }
 
-                $model = $this->createRelationshipModel($options['model']);
-                $columnKeys[count($columnKeys) + 1] = $model->getTable() . "." . $options['foreign_key'] . " as _datatable_" . $model->getTable() . "_" . $options['foreign_key'];
-            }
-        }
-
-        if (isset($this->dataTableRelationships['belongsToMany'])) {
-            foreach ($this->dataTableRelationships['belongsToMany'] as $tableName => $options) {
-
-                if (! isset($options['model'])) {     
-                    throw new RelationshipModelNotSetException(
-                        "Model not set on relationship: $tableName"
-                    );
-                }
-
-                $model = $this->createRelationshipModel($options['model']);
-                $columnKeys[count($columnKeys) + 1] = $model->getTable() .".". $model->getKeyName() ." as _datatable_". $model->getTable() ."_". $model->getKeyName();
+                $columnKeys[count($columnKeys) + 1] = $this->getTable() . "." . $options['foreign_key'];
             }
         }
         
+        //Attach related foreign keys
         if (isset($this->dataTableRelationships['belongsTo'])) {
             foreach ($this->dataTableRelationships['belongsTo'] as $tableName => $options) {
                 //Exceptions
@@ -137,12 +106,6 @@ trait LaravelVueDatatableTrait
                     '=',
                     $model->getTable() . "." . $model->getKeyName()
                 );
-
-                foreach ($options['columns'] as $columnName => $atts) {
-                    if ($atts[$defaultOrderBy]) {
-                        array_push($columnKeys, $model->getTable() . ".$columnName as _datatable_" . $model->getTable() . "_" . $columnName);
-                    }
-                }
             }
         }
 
@@ -178,12 +141,6 @@ trait LaravelVueDatatableTrait
                     '=',
                     $this->getTable() . "." . $this->getKeyName(),
                 );
-
-                foreach ($options['columns'] as $columnName => $atts) {
-                    if ($atts[$defaultOrderBy]) {
-                        array_push($columnKeys, "$tableName.$columnName as _datatable_" . $tableName . "_" . $columnName);
-                    }
-                }
             }
         }
 
