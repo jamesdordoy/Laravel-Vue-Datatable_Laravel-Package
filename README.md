@@ -47,7 +47,8 @@ $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Provide
 ```php
 [
     'models' => [
-        "search_term" => "searchable"
+        "search_term" => "searchable",
+        "order_term" => "orderable",
     ],
     "default_order_by" => "id"
 ]
@@ -103,11 +104,11 @@ class UserController extends Controller
     public function index(Request $request)
     {   
         $length = $request->input('length');
-        $column = $request->input('column'); //Index
-        $orderBy = $request->input('dir', 'asc');
+        $orderBy = $request->input('column'); //Index
+        $orderByDir = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
         
-        $query = User::eloquentQuery($column, $orderBy, $searchValue);
+        $query = User::eloquentQuery($orderBy, $orderByDir, $searchValue);
         $data = $query->paginate($length);
         
         return new DataTableCollectionResource($data);
@@ -132,26 +133,29 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {   
-        $length = $request->input('length');
-        $column = $request->input('column'); //Index
-        $orderBy = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
-        
-        $query = User::queryBuilderQuery($column, $orderBy, $searchValue);
+        $orderBy = $request->input('column');
+        $orderBydir = $request->input("dir");
+        $length = $request->input('length');
 
-        $query
+        $data = \DB::table('users')
             ->join('roles', 'roles.id', '=', 'users.role_id')
+            ->join('departments', 'departments.id', '=', 'roles.department_id')
             ->select(
                 'roles.name as role_name',
                 'users.id',
                 'users.cost',
                 'users.name as user_name',
-                'users.email'
+                'users.email',
+                'departments.name as department_name'
             )
-            ->orWhere('roles.name', "LIKE", "%$searchValue%");
+            ->where("users.name", "LIKE", "%$searchValue%")
+            ->orWhere('users.email', "LIKE", "%$searchValue%")
+            ->orWhere('roles.name', "LIKE", "%$searchValue%")
+            ->orWhere('departments.name', "LIKE", "%$searchValue%")
+            ->orderBy($orderBy, $orderBydir)
+            ->paginate($length);
 
-        $data = $query->paginate($length);
-        
         return new DataTableCollectionResource($data);
     }
 }
