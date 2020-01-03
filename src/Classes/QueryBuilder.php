@@ -33,7 +33,7 @@ class QueryBuilder implements QueryBuilderContract {
     protected $relationships;
     protected $relationshipModelFactory;
 
-    public function __construct(Model $model, Builder $query, array $localColumns, array $relationships)
+    public function __construct(Model $model, Builder $query, array $localColumns = [], array $relationships = [])
     {
         $this->model = $model;
         $this->query = $query;
