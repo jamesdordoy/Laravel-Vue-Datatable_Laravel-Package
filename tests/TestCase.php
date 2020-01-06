@@ -1,13 +1,21 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\TestCase;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
-class TestCase extends Orchestra\Testbench\TestCase
-{
-    //
-
+class MyTest extends Orchestra\Testbench\TestCase
+{ 
     public function test_is_working()
     {
-        $this->assertTrue(true);
+        $data = collect(["hi"]);
+
+        $resource = new DataTableCollectionResource($data);
+
+        var_dump($resource);
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return ['JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider'];
     }
 }
