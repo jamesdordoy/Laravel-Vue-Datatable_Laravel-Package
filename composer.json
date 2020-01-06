@@ -2,11 +2,15 @@
     "name": "jamesdordoy/laravelvuedatatable",
     "authors": [
         {
-            "name": "Home",
+            "name": "James Dordoy",
             "email": "jamesdordoy@gmail.com"
         }
     ],
     "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^3.7",
+        "phpunit/phpunit": "^7.5"       
+    },
     "autoload": {
         "psr-4": {
             "JamesDordoy\\LaravelVueDatatable\\": "src/"
