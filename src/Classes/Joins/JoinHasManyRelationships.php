@@ -40,7 +40,7 @@ class JoinHasManyRelationships
                     "$tableName",
                     "$tableName." . $options['foreign_key'],
                     '=',
-                    $localModel->getTable() . "." . $localModel->getKeyName(),
+                    $localModel->getTable() . "." . $localModel->getKeyName()
                 );
             }
         }
