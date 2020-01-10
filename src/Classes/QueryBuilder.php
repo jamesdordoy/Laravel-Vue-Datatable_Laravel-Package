@@ -25,8 +25,8 @@ use JamesDordoy\LaravelVueDatatable\Classes\Relationships\GetBelongsToManyRelati
 //Exceptions
 use JamesDordoy\LaravelVueDatatable\Exceptions\RelationshipForeignKeyNotSetException;
 
-class QueryBuilder implements QueryBuilderContract {
-
+class QueryBuilder implements QueryBuilderContract
+{
     protected $model;
     protected $query;
     protected $localColumns;
@@ -59,13 +59,11 @@ class QueryBuilder implements QueryBuilderContract {
         $joinBelongMany = new JoinBelongsToManyRelationships;
         $this->query = $joinBelongMany($this->query, $this->model, $this->relationships, $this->relationshipModelFactory);
 
-        //If there are columns to select otherwise use the Laravel default
         if (count($columnKeys)) {
             $this->query = $this->query->select($columnKeys);
         }
 
-        //Group the data by the parent model
-        $this->query->groupBy($this->model->getTable() . "." . $this->model->getKeyName());
+        $this->query->groupBy($this->model->getTable().".".$this->model->getKeyName());
 
         return $this;
     }
@@ -81,13 +79,13 @@ class QueryBuilder implements QueryBuilderContract {
         } else {
             $defaultOrderBy = config('laravel-vue-datatables.default_order_by');
             $defaultOrderBy = is_null($defaultOrderBy) ? 'id' : $defaultOrderBy;
-            $this->query->orderBy($this->model->getTable() . ".$defaultOrderBy", $orderByDir);
+            $this->query->orderBy($this->model->getTable().".$defaultOrderBy", $orderByDir);
         }
 
         return $this;
     }
 
-    public function addRelationships($declaredRelationship)
+    public function addRelationships($declaredRelationship, $orderByDir)
     {
         $getBelongsTo = new GetBelongsToRelationships;
         $with = $getBelongsTo($this->relationships, $declaredRelationship);
@@ -96,7 +94,7 @@ class QueryBuilder implements QueryBuilderContract {
         $with = $getHasMany($this->relationships, $declaredRelationship, $with);
 
         $getBelongsToMany = new GetBelongsToManyRelationships;
-        $with = $getBelongsToMany($this->relationships, $declaredRelationship, $with);
+        $with = $getBelongsToMany($this->relationships, $declaredRelationship, $with, $orderByDir);
 
         if (count($with)) {
             $this->query->with($with);
@@ -129,13 +127,12 @@ class QueryBuilder implements QueryBuilderContract {
 
     protected function selectModelColumns()
     {
-        if (isset($this->localColumns) && !empty($this->localColumns)) {
-            //Select this tables columns defined in the model
+        if (isset($this->localColumns) && ! empty($this->localColumns)) {
+
             $columnKeys = array_keys($this->localColumns);
-            
-            //Prefix keys with table name
+
             foreach ($columnKeys as $index => $key) {
-                $columnKeys[$index] = $this->model->getTable() . ".$key";
+                $columnKeys[$index] = $this->model->getTable().".$key";
             }
 
             return $columnKeys;

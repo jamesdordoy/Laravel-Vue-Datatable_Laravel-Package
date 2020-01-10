@@ -11,7 +11,7 @@ trait LaravelVueDatatableTrait
         $queryBuilder = new QueryBuilder($this, $query, $this->dataTableColumns, $this->dataTableRelationships);
         
         return $queryBuilder->selectData()
-            ->addRelationships($relationships)
+            ->addRelationships($relationships, $orderByDir)
             ->orderBy($orderBy, $orderByDir)
             ->filter($searchValue)
             ->getQuery();
