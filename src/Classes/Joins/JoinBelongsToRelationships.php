@@ -34,11 +34,13 @@ class JoinBelongsToRelationships
                 $model = $relationshipModelFactory($options['model'], $tableName);
 
                 //Join the table so it can be orderBy
+                $tableName = isset($options['alias']) ? $options['alias'] : $model->getTable();
+
                 $query = $query->leftJoin(
-                    $model->getTable(),
+                    $model->getTable() . " as " . $tableName,
                     $localModel->getTable() . "." . $options['foreign_key'],
                     '=',
-                    $model->getTable() . "." . $model->getKeyName()
+                    $tableName . "." . $model->getKeyName()
                 );
             }
         }
