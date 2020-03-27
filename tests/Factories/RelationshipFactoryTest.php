@@ -1,12 +1,15 @@
 <?php
 
-namespace JamesDordoy\LaravelVueDatatable\Tests;
-
-use Orchestra\Testbench\TestCase as PackageTestCase;
+use JamesDordoy\LaravelVueDatatable\Tests\TestCase;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
-class TestCase extends PackageTestCase
+class RelationshipFactoryTest extends TestCase
 { 
+    public function test_is_working()
+    {
+        
+    }
+
     protected function getPackageProviders($app)
     {
         return ['JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider'];
