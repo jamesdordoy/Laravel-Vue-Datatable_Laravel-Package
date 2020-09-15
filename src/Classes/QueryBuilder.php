@@ -132,7 +132,8 @@ class QueryBuilder implements QueryBuilderContract
             $columnKeys = array_keys($this->localColumns);
 
             foreach ($columnKeys as $index => $key) {
-                $columnKeys[$index] = $this->model->getTable().".$key";
+                $as = isset($this->localColumns[$key]['as']) ? ' as ' . $this->localColumns[$key]['as'] : '';
+                $columnKeys[$index] = $this->model->getTable().".$key" . $as;
             }
 
             return $columnKeys;
