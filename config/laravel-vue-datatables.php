@@ -2,6 +2,7 @@
 
 return [
     'models' => [
+        "alias" => "as",
         "search_term" => "searchable",
         "order_term" => "orderable",
     ],

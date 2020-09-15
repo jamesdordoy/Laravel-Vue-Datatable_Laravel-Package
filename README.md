@@ -47,6 +47,7 @@ $ php artisan vendor:publish --provider="JamesDordoy\LaravelVueDatatable\Provide
 ```php
 [
     'models' => [
+        "alias" => "as",
         "search_term" => "searchable",
         "order_term" => "orderable",
     ],

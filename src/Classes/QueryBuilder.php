@@ -132,7 +132,9 @@ class QueryBuilder implements QueryBuilderContract
             $columnKeys = array_keys($this->localColumns);
 
             foreach ($columnKeys as $index => $key) {
-                $as = isset($this->localColumns[$key]['as']) ? ' as ' . $this->localColumns[$key]['as'] : '';
+                $defaultAs = config('laravel-vue-datatables.models.alias');
+                $as = isset($this->localColumns[$key][$defaultAs]) ? ' as ' . $this->localColumns[$key][$defaultAs] : '';
+                
                 $columnKeys[$index] = $this->model->getTable().".$key" . $as;
             }
 
