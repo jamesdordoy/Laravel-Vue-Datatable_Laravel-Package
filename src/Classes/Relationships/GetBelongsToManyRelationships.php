@@ -8,7 +8,7 @@ use JamesDordoy\LaravelVueDatatable\Exceptions\RelationshipForeignKeyNotSetExcep
 
 class GetBelongsToManyRelationships
 {
-    public function __invoke($declaredRelationship, $relationships, $with = [], $orderByDir)
+    public function __invoke($declaredRelationship, $relationships, $with = [], $orderByDir = "asc")
     {
         if (isset($declaredRelationship['belongsToMany'])) {
 
