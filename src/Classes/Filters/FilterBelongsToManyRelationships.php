@@ -12,7 +12,7 @@ class FilterBelongsToManyRelationships
         if (isset($relationships['belongsToMany'])) {
 
             $searchTerm = config('laravel-vue-datatables.models.search_term');
-
+            $likeTerm = config('laravel-vue-datatables.like_term');
             foreach ($relationships['belongsToMany'] as $tableName => $options) {
 
                 if (! isset($options['model'])) {     
@@ -38,9 +38,9 @@ class FilterBelongsToManyRelationships
                         if ($column[$searchTerm]) {
                             //Check if first key
                             if ($columnName === key($options['columns'])) {
-                                $query->where("$tableName.$columnName", "like",  "%$searchValue%");
+                                $query->where("$tableName.$columnName", $likeTerm,  "%$searchValue%");
                             } else {
-                                $query->orWhere("$tableName.$columnName", "like",  "%$searchValue%");
+                                $query->orWhere("$tableName.$columnName", $likeTerm,  "%$searchValue%");
                             }
                         }
                     }  

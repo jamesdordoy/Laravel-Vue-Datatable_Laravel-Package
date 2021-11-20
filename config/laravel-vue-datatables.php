@@ -7,4 +7,5 @@ return [
         "order_term" => "orderable",
     ],
     "default_order_by" => "id",
+    "like_term" => "like" // use ilike for PostgreSQL
 ];
