@@ -30,7 +30,7 @@ class FilterHasOneRelationships
 
                 $model = $relationshipModelFactory($options['model'], $tableName);
 
-                $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm) {
+                $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm, $likeTerm) {
                     
                     if (isset($options['columns'])) {
                         

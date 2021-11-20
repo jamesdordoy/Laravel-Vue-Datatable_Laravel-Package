@@ -29,7 +29,7 @@ class FilterBelongsToManyRelationships
 
                 $model = $relationshipModelFactory($options['model'], $tableName);
 
-                $query = $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm) {
+                $query = $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm, $likeTerm) {
                     //Get the real table name
                     $tableName = $model->getTable();
 
