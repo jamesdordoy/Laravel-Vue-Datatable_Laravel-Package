@@ -29,7 +29,7 @@ class FilterBelongsToRelationships
 
                 $model = $relationshipModelFactory($options['model'], $tableName);
 
-                return $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm) {
+                $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm) {
                     
                     if (isset($options['columns'])) {
                         
