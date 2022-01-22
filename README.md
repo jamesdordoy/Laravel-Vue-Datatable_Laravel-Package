@@ -12,7 +12,7 @@ This package makes use of an optional default component, the [Laravel Vue Pagina
 
 ## Demo
 
-See [https://jamesdordoy.github.io/vue-datatable/](https://jamesdordoy.github.io/vue-datatable/)
+See [https://jamesdordoy.github.io/laravel-vue-datatable/](https://jamesdordoy.github.io/laravel-vue-datatable/)
 
 ## Table of Contents
 - [Example](#example)
