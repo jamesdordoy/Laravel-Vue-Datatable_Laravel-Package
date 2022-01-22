@@ -10,7 +10,7 @@ class FilterBelongsToRelationships
     public function __invoke($query, $searchValue, $relationshipModelFactory, $model, $relationships)
     {
         $searchTerm = config('laravel-vue-datatables.models.search_term');
-
+        $likeTerm = config('laravel-vue-datatables.like_term');
         if (isset($relationships['belongsTo'])) {
 
             foreach ($relationships['belongsTo'] as $tableName => $options) {  
@@ -29,7 +29,7 @@ class FilterBelongsToRelationships
 
                 $model = $relationshipModelFactory($options['model'], $tableName);
 
-                return $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm) {
+                $query->orWhereHas($tableName, function ($query) use ($searchValue, $model, $options, $searchTerm, $likeTerm) {
                     
                     if (isset($options['columns'])) {
                         
@@ -38,9 +38,9 @@ class FilterBelongsToRelationships
                         foreach ($options['columns'] as $columnName => $col) {
                             if ($col[$searchTerm]) {
                                 if ($columnName === key($options['columns'])) {
-                                    $query->where("$tableName.$columnName", "like",  "%$searchValue%");
+                                    $query->where("$tableName.$columnName", $likeTerm,  "%$searchValue%");
                                 } else {
-                                    $query->orWhere("$tableName.$columnName", "like",  "%$searchValue%");
+                                    $query->orWhere("$tableName.$columnName", $likeTerm,  "%$searchValue%");
                                 }
                             }
                         }
